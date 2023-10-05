@@ -2,9 +2,10 @@ package com.example.yuseong_allowancepayments_be.domain.allowance.domain
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Entity
-class PaymentTarget(
+class PaymentStopped(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
@@ -38,17 +39,20 @@ class PaymentTarget(
     @Column(columnDefinition = "VARCHAR(30)")
     val bankAccountNumber: String,
 
-    @Column(columnDefinition = "INTEGER")
-    val fertilization: Int,
-
-    @Column(columnDefinition = "INTEGER")
-    val provision: Int,
-
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(19)")
     val allowanceType: AllowanceType,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val note: String
+    val note: String,
+
+    @Column(columnDefinition = "VARCHAR(100)")
+    val stoppedReason: String,
+
+    @Column(columnDefinition = "DATETIME(8)")
+    val stoppedDate: LocalDateTime,
+
+    @Column(columnDefinition = "VARCHAR(100)")
+    val transferAddress: String
 ) {
 }
