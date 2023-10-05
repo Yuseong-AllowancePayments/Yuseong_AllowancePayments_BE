@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.user
+package com.example.yuseong_allowancepayments_be.domain.user.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
