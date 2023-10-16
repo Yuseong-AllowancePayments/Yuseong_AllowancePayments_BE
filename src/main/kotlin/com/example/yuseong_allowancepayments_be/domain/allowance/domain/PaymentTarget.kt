@@ -1,7 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.domain
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 class PaymentTarget(

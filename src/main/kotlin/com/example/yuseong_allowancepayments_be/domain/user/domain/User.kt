@@ -1,10 +1,6 @@
 package com.example.yuseong_allowancepayments_be.domain.user.domain
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import javax.persistence.*
 
 @Entity
 class User(
