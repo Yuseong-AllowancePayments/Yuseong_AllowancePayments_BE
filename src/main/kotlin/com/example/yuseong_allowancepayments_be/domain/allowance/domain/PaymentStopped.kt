@@ -1,13 +1,13 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.domain
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
-import java.time.LocalDateTime
+import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
 class PaymentStopped(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @Column(columnDefinition = "INTEGER")
     val serialNumber: Int,
@@ -50,9 +50,8 @@ class PaymentStopped(
     val stoppedReason: String,
 
     @Column(columnDefinition = "DATETIME(8)")
-    val stoppedDate: LocalDateTime,
+    val stoppedDate: LocalDate,
 
     @Column(columnDefinition = "VARCHAR(100)")
     val transferAddress: String
-) {
-}
+)

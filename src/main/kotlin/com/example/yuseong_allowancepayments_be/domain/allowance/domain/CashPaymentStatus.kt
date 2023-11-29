@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity
 class CashPaymentStatus(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @Column(columnDefinition = "INTEGER")
     val serialNumber: Int,
@@ -29,14 +29,11 @@ class CashPaymentStatus(
     @Column(columnDefinition = "VARCHAR(30)")
     val depositType: String,
 
-    @Column(columnDefinition = "VARCHAR(30)")
-    val bankName: String,
+    @Column(columnDefinition = "INTEGER")
+    val sibi: Int,
 
     @Column(columnDefinition = "INTEGER")
-    val fertilization: Int,
-
-    @Column(columnDefinition = "INTEGER")
-    val provision: Int,
+    val gubi: Int,
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(19)")
@@ -44,5 +41,4 @@ class CashPaymentStatus(
 
     @Column(columnDefinition = "VARCHAR(100)")
     val note: String
-) {
-}
+)

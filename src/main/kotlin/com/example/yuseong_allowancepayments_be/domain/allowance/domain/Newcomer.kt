@@ -1,13 +1,14 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.domain
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
+import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
 class Newcomer(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @Column(columnDefinition = "INTEGER")
     val serialNumber: Int,
@@ -50,6 +51,5 @@ class Newcomer(
     val transferReason: String,
 
     @Column(columnDefinition = "DATETIME")
-    val transferDate: LocalDateTime
-) {
-}
+    val transferDate: LocalDate
+)
