@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.auth.domain.presentation.dto.response
+package com.example.yuseong_allowancepayments_be.domain.auth.dto
 
 import java.util.*
 

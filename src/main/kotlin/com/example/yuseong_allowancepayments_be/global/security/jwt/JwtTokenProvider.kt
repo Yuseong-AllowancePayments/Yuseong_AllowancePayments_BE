@@ -1,8 +1,8 @@
 package com.example.yuseong_allowancepayments_be.global.security.jwt
 
-import com.example.yuseong_allowancepayments_be.domain.auth.domain.RefreshToken
-import com.example.yuseong_allowancepayments_be.domain.auth.domain.presentation.dto.response.TokenResponse
-import com.example.yuseong_allowancepayments_be.domain.auth.domain.repository.RefreshTokenRepository
+import com.example.yuseong_allowancepayments_be.domain.auth.persistence.RefreshToken
+import com.example.yuseong_allowancepayments_be.domain.auth.dto.TokenResponse
+import com.example.yuseong_allowancepayments_be.domain.auth.persistence.repository.RefreshTokenRepository
 import com.example.yuseong_allowancepayments_be.global.security.SecurityProperties
 import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts

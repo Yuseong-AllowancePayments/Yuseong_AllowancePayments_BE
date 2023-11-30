@@ -1,11 +1,11 @@
-package com.example.yuseong_allowancepayments_be.domain.allowance.domain
+package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-class PaymentStopped(
+class Newcomer(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
@@ -47,11 +47,8 @@ class PaymentStopped(
     val note: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val stoppedReason: String,
+    val transferReason: String,
 
-    @Column(columnDefinition = "DATETIME(8)")
-    val stoppedDate: LocalDate,
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    val transferAddress: String
+    @Column(columnDefinition = "DATETIME")
+    val transferDate: LocalDate
 )

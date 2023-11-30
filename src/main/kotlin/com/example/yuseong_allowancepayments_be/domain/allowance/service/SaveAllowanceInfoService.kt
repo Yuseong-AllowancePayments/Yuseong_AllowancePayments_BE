@@ -1,10 +1,10 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.service
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.repository.CashPaymentStatusJpaRepository
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.repository.NewcomerJpaRepository
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.repository.PaymentStoppedJpaRepository
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.repository.PaymentTargetJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.CashPaymentStatusJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.NewcomerJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.PaymentStoppedJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.PaymentTargetJpaRepository
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.ExcelUtil
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile

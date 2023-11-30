@@ -1,11 +1,11 @@
 package com.example.yuseong_allowancepayments_be.thirdparty.excel
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.CashPaymentStatus
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.Newcomer
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.PaymentStopped
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.PaymentTarget
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.repository.NewcomerJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.CashPaymentStatus
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.Newcomer
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentStopped
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentTarget
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.NewcomerJpaRepository
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.AllowanceInfo
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel.Sheet

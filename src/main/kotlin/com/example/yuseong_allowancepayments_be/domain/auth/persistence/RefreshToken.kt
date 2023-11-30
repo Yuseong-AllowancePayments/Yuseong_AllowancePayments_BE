@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.auth.domain
+package com.example.yuseong_allowancepayments_be.domain.auth.persistence
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash

@@ -1,6 +1,6 @@
-package com.example.yuseong_allowancepayments_be.domain.allowance.domain
+package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import javax.persistence.*
 
 @Entity

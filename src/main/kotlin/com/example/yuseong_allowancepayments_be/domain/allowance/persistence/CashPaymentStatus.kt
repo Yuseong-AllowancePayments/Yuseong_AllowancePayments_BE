@@ -1,12 +1,10 @@
-package com.example.yuseong_allowancepayments_be.domain.allowance.domain
+package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums.AllowanceType
-import java.time.LocalDate
-import java.time.LocalDateTime
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import javax.persistence.*
 
 @Entity
-class Newcomer(
+class CashPaymentStatus(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
@@ -31,25 +29,16 @@ class Newcomer(
     @Column(columnDefinition = "VARCHAR(30)")
     val depositType: String,
 
-    @Column(columnDefinition = "VARCHAR(30)")
-    val bankName: String,
+    @Column(columnDefinition = "INTEGER")
+    val sibi: Int,
 
-    @Column(columnDefinition = "VARCHAR(10)")
-    val accountHolder: String,
-
-    @Column(columnDefinition = "VARCHAR(30)")
-    val bankAccountNumber: String,
+    @Column(columnDefinition = "INTEGER")
+    val gubi: Int,
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(19)")
     val allowanceType: AllowanceType,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val note: String,
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    val transferReason: String,
-
-    @Column(columnDefinition = "DATETIME")
-    val transferDate: LocalDate
+    val note: String
 )

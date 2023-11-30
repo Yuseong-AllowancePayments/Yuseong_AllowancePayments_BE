@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.allowance.domain.enums
+package com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums
 
 enum class AllowanceType {
     WAR_VETERAN,
