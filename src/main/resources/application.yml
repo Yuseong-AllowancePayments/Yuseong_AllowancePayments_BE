@@ -16,6 +16,6 @@ spring:
     open-in-view: false
 
 jwt:
-  secret_key: ${SECRET_KEY}
-  access_exp: ${ACCESS_EXP}
-  refresh_exp: ${REFRESH_EXP}
+  secret_key: ${SECRET_KEY:asdf}
+  access_exp: ${ACCESS_EXP:3306}
+  refresh_exp: ${REFRESH_EXP:3306}
