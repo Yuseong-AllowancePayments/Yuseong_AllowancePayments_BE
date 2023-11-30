@@ -8,6 +8,7 @@ enum class ErrorCode(
 ) : ErrorResponse {
     INVALID_TOKEN(401, "Invalid Token"),
     EXPIRED_TOKEN(401, "Expired Token"),
+    UNEXPECTED_TOKEN(401, "Unexpected Token"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     PIN_CODE_NOT_FOUND(404, "Pin Code Not Found"),
