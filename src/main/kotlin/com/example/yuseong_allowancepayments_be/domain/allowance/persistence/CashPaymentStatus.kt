@@ -1,6 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.exel.dto.CashPaymentResponse
 import javax.persistence.*
 
 @Entity
@@ -41,4 +42,8 @@ class CashPaymentStatus(
 
     @Column(columnDefinition = "VARCHAR(100)")
     val note: String
-)
+) {
+    fun toResponse(): CashPaymentResponse = CashPaymentResponse(
+        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, sibi, gubi, note
+    )
+}

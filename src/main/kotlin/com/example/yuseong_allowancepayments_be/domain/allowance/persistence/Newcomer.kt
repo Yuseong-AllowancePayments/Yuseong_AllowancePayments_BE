@@ -1,6 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.exel.dto.NewcomerResponse
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -49,6 +50,10 @@ class Newcomer(
     @Column(columnDefinition = "VARCHAR(100)")
     val transferReason: String,
 
-    @Column(columnDefinition = "DATETIME")
-    val transferDate: LocalDate
-)
+    @Column(columnDefinition = "VARCHAR(100)")
+    val transferDate: String
+) {
+    fun toResponse(): NewcomerResponse = NewcomerResponse(
+        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
+    )
+}

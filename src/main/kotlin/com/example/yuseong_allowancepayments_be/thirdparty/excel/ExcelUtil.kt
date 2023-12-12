@@ -5,28 +5,24 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.New
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentStopped
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentTarget
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.NewcomerJpaRepository
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.AllowanceInfo
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Component
 import org.springframework.util.PatternMatchUtils
 import org.springframework.web.multipart.MultipartFile
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @Component
-class ExcelUtil(
-    private val newcomerJpaRepository: NewcomerJpaRepository
-) {
+class ExcelUtil {
     fun getAllowanceInfo(file: MultipartFile, type: AllowanceType): AllowanceInfo {
         val workbook = file.transferToExcel()
-        val paymentTargets = getPaymentTarget(workbook.getSheetAt(0), type)
-        val cachePayments = getCashPayment(workbook.getSheetAt(1), type)
-        val newcomers = getNewcomer(workbook.getSheetAt(2), type)
-        val paymentStopped = getPaymentStopped(workbook.getSheetAt(3), type)
+        val paymentTargets = getPaymentTarget(workbook.getSheetAt(1), type)
+        val cachePayments = getCashPayment(workbook.getSheetAt(2), type)
+        val newcomers = getNewcomer(workbook.getSheetAt(3), type)
+        val paymentStopped = getPaymentStopped(workbook.getSheetAt(4), type)
 
         return AllowanceInfo(
             paymentTargets = paymentTargets,
@@ -41,7 +37,8 @@ class ExcelUtil(
 
         return inputStream.use {
             runCatching {
-                when (this.originalFilename?.split('.')?.get(1)) {
+                val splitFileName = this.originalFilename?.split('.')
+                when (splitFileName?.get(splitFileName.lastIndex)) {
                     "xls" -> HSSFWorkbook(inputStream)
                     "xlsx" -> XSSFWorkbook(inputStream)
                     else -> throw RuntimeException("Invalid File")
@@ -55,7 +52,7 @@ class ExcelUtil(
 
     private fun getPaymentTarget(workSheet: Sheet, allowanceType: AllowanceType): List<PaymentTarget> {
         val results = mutableListOf<PaymentTarget>()
-        for (i in 2..workSheet.lastRowNum) {
+        for (i in 4..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
             val depositType = row.getCell(6).stringCellValue
             PatternMatchUtils.simpleMatch("*:*", depositType)
@@ -79,37 +76,38 @@ class ExcelUtil(
             )
         }
 
-        return results;
+        return results
     }
 
     private fun getCashPayment(workSheet: Sheet, allowanceType: AllowanceType): List<CashPaymentStatus> {
         val results = mutableListOf<CashPaymentStatus>()
-        for (i in 2..workSheet.lastRowNum) {
+        for (i in 4..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
             results.add(
                 CashPaymentStatus(
-                    serialNumber = row.getCell(0).numericCellValue.toInt(),
-                    hangJungDong = row.getCell(1).stringCellValue,
-                    veteransNumber = row.getCell(2).stringCellValue,
-                    name = row.getCell(3).stringCellValue,
-                    residentRegistrationNumber = row.getCell(4).stringCellValue,
-                    address = row.getCell(5).stringCellValue,
-                    depositType = row.getCell(6).stringCellValue,
-                    sibi = row.getCell(7).numericCellValue.toInt(),
-                    gubi = row.getCell(8).numericCellValue.toInt(),
-                    note = row.getCell(9).stringCellValue,
+                    serialNumber = row.getCell(1).numericCellValue.toInt(),
+                    hangJungDong = row.getCell(2).stringCellValue,
+                    veteransNumber = row.getCell(3).stringCellValue,
+                    name = row.getCell(4).stringCellValue,
+                    residentRegistrationNumber = row.getCell(5).stringCellValue,
+                    address = row.getCell(6).stringCellValue,
+                    depositType = row.getCell(7).stringCellValue,
+                    sibi = row.getCell(8).numericCellValue.toInt(),
+                    gubi = row.getCell(9).numericCellValue.toInt(),
+                    note = row.getCell(10).stringCellValue,
                     allowanceType = allowanceType
                 )
             )
         }
 
-        return results;
+        return results
     }
 
     private fun getNewcomer(workSheet: Sheet, allowanceType: AllowanceType): List<Newcomer> {
         val results = mutableListOf<Newcomer>()
         for (i in 2..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
+
             results.add(
                 Newcomer(
                     serialNumber = row.getCell(0).numericCellValue.toInt(),
@@ -123,19 +121,19 @@ class ExcelUtil(
                     accountHolder = row.getCell(8).stringCellValue,
                     bankAccountNumber = row.getCell(9).stringCellValue,
                     transferReason = row.getCell(10).stringCellValue,
-                    transferDate = LocalDate.parse(row.getCell(11).stringCellValue, DateTimeFormatter.ISO_DATE),
+                    transferDate = if (row.getCell(11).cellType == CellType.STRING) row.getCell(11).stringCellValue else "",
                     note = row.getCell(12).stringCellValue,
                     allowanceType = allowanceType
                 )
             )
         }
 
-        return results;
+        return results
     }
 
     private fun getPaymentStopped(workSheet: Sheet, allowanceType: AllowanceType): List<PaymentStopped> {
         val results = mutableListOf<PaymentStopped>()
-        for (i in 2..workSheet.lastRowNum) {
+        for (i in 3..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
             results.add(
                 PaymentStopped(
@@ -150,7 +148,7 @@ class ExcelUtil(
                     accountHolder = row.getCell(8).stringCellValue,
                     bankAccountNumber = row.getCell(9).stringCellValue,
                     stoppedReason = row.getCell(10).stringCellValue,
-                    stoppedDate = LocalDate.parse(row.getCell(11).stringCellValue, DateTimeFormatter.ISO_DATE),
+                    stoppedDate = "",
                     note = row.getCell(12).stringCellValue,
                     transferAddress = row.getCell(13).stringCellValue,
                     allowanceType = allowanceType
@@ -158,6 +156,6 @@ class ExcelUtil(
             )
         }
 
-        return results;
+        return results
     }
 }

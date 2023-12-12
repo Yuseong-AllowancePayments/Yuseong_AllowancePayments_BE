@@ -24,6 +24,7 @@ class ExceptionFilter(
         try {
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
+            e.printStackTrace()
             when (e) {
                 is CustomException -> sendErrorMessage(e, response)
                 else -> sendErrorMessage(InternalServerErrorException.EXCEPTION, response)

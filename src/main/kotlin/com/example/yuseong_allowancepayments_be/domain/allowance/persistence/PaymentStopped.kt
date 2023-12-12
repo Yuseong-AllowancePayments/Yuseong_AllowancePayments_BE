@@ -1,6 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.exel.dto.PaymentStoppedResponse
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -49,9 +50,13 @@ class PaymentStopped(
     @Column(columnDefinition = "VARCHAR(100)")
     val stoppedReason: String,
 
-    @Column(columnDefinition = "DATETIME(8)")
-    val stoppedDate: LocalDate,
+    @Column(columnDefinition = "VARCHAR(100)")
+    val stoppedDate: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
     val transferAddress: String
-)
+) {
+    fun toResponse(): PaymentStoppedResponse = PaymentStoppedResponse(
+        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, stoppedReason, stoppedDate, transferAddress
+    )
+}

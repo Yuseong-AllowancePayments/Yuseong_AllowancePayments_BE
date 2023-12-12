@@ -8,13 +8,10 @@ import com.example.yuseong_allowancepayments_be.domain.auth.service.GetCenterPin
 import com.example.yuseong_allowancepayments_be.domain.auth.service.IssuePinCodeService
 import com.example.yuseong_allowancepayments_be.domain.auth.service.LoginService
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
-@RestController("/auth")
+@RestController
+@RequestMapping("/auth")
 class AuthController(
     private val loginService: LoginService,
     private val issuePinCodeService: IssuePinCodeService,
