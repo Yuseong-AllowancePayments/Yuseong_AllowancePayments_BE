@@ -1,7 +1,9 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.presentation
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.GetAllowanceResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.service.ExportAllowanceInfoService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.GetAllowanceService
 import com.example.yuseong_allowancepayments_be.domain.allowance.service.SaveAllowanceInfoService
 import org.jetbrains.annotations.NotNull
 import org.springframework.web.bind.annotation.*
@@ -12,7 +14,8 @@ import javax.servlet.http.HttpServletResponse
 @RequestMapping("/allowance")
 class AllowanceController(
     private val saveAllowanceInfoService: SaveAllowanceInfoService,
-    private val exportAllowanceInfoService: ExportAllowanceInfoService
+    private val exportAllowanceInfoService: ExportAllowanceInfoService,
+    private val getAllowanceService: GetAllowanceService,
 ) {
 
     @PostMapping
@@ -29,5 +32,12 @@ class AllowanceController(
 
         response.contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         response.outputStream.write(file)
+    }
+
+    @GetMapping
+    fun getAllowanceList(
+        @RequestParam type: AllowanceType,
+    ): List<GetAllowanceResponse> {
+        return getAllowanceService.execute(type)
     }
 }
