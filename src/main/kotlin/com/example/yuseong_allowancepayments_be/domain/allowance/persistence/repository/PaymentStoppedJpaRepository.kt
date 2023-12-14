@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PaymentStoppedJpaRepository: JpaRepository<PaymentStopped, Long> {
     fun findByAllowanceTypeOrderBySerialNumberAsc(type: AllowanceType): List<PaymentStopped>
+    fun findPaymentStoppedById(id: Long): PaymentStopped?
 }

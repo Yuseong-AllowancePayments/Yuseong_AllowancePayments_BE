@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PaymentTargetJpaRepository : JpaRepository<PaymentTarget, Long> {
     fun findByAllowanceTypeOrderBySerialNumberAsc(type: AllowanceType): List<PaymentTarget>
+    fun findPaymentTargetById(id: Long): PaymentTarget?
 }

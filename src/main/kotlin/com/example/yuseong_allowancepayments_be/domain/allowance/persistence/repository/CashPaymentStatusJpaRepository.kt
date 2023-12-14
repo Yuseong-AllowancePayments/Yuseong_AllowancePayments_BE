@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface CashPaymentStatusJpaRepository : JpaRepository<CashPaymentStatus, Long> {
     fun findByAllowanceTypeOrderBySerialNumberAsc(type: AllowanceType): List<CashPaymentStatus>
+    fun findCashPaymentStatusById(id: Long): CashPaymentStatus?
 }

@@ -1,6 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.exel.dto.NewcomerResponse
 import java.time.LocalDate
 import javax.persistence.*
@@ -11,49 +12,67 @@ class Newcomer(
     val id: Long? = null,
 
     @Column(columnDefinition = "INTEGER")
-    val serialNumber: Int,
+    var serialNumber: Int,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val hangJungDong: String,
+    var hangJungDong: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val veteransNumber: String,
+    var veteransNumber: String,
 
     @Column(columnDefinition = "VARCHAR(13)")
-    val residentRegistrationNumber: String,
+    var residentRegistrationNumber: String,
 
     @Column(columnDefinition = "VARCHAR(10)")
-    val name: String,
+    var name: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val address: String,
+    var address: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val depositType: String,
+    var depositType: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val bankName: String,
+    var bankName: String,
 
     @Column(columnDefinition = "VARCHAR(10)")
-    val accountHolder: String,
+    var accountHolder: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val bankAccountNumber: String,
+    var bankAccountNumber: String,
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(19)")
-    val allowanceType: AllowanceType,
+    var allowanceType: AllowanceType,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val note: String,
+    var note: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val transferReason: String,
+    var transferReason: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val transferDate: String
+    var transferDate: String
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
         serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
     )
+
+    fun update(
+        request: UpdateNewcomerRequest
+    ) {
+        this.serialNumber = request.serialNumber
+        this.hangJungDong = request.hangJungDong
+        this.veteransNumber = request.veteransNumber
+        this.residentRegistrationNumber = request.residentRegistrationNumber
+        this.name = request.name
+        this.address = request.address
+        this.depositType = request.depositType
+        this.bankName = request.bankName
+        this.bankAccountNumber = request.bankAccountNumber
+        this.allowanceType = request.allowanceType
+        this.note = request.note
+        this.transferReason = request.transferReason
+        this.transferDate = request.transferDate
+    }
 }

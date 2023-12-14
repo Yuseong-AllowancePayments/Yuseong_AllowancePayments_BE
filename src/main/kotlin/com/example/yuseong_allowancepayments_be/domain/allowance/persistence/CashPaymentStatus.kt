@@ -1,6 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateCashPaymentStatusRequest
 import com.example.yuseong_allowancepayments_be.domain.exel.dto.CashPaymentResponse
 import javax.persistence.*
 
@@ -10,40 +11,65 @@ class CashPaymentStatus(
     val id: Long? = null,
 
     @Column(columnDefinition = "INTEGER")
-    val serialNumber: Int,
+    var serialNumber: Int,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val hangJungDong: String,
+    var hangJungDong: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val veteransNumber: String,
+    var veteransNumber: String,
 
     @Column(columnDefinition = "VARCHAR(13)")
-    val residentRegistrationNumber: String,
+    var residentRegistrationNumber: String,
 
     @Column(columnDefinition = "VARCHAR(10)")
-    val name: String,
+    var name: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val address: String,
+    var address: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
-    val depositType: String,
+    var depositType: String,
 
     @Column(columnDefinition = "INTEGER")
-    val sibi: Int,
+    var sibi: Int,
 
     @Column(columnDefinition = "INTEGER")
-    val gubi: Int,
+    var gubi: Int,
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(19)")
-    val allowanceType: AllowanceType,
+    var allowanceType: AllowanceType,
 
     @Column(columnDefinition = "VARCHAR(100)")
-    val note: String
+    var note: String
 ) {
     fun toResponse(): CashPaymentResponse = CashPaymentResponse(
-        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, sibi, gubi, note
+        serialNumber,
+        hangJungDong,
+        veteransNumber,
+        residentRegistrationNumber,
+        name,
+        address,
+        depositType,
+        sibi,
+        gubi,
+        note
     )
+
+    fun update(
+        request: UpdateCashPaymentStatusRequest
+    ) {
+        this.serialNumber = request.serialNumber
+        this.hangJungDong = request.hangJungDong
+        this.veteransNumber = request.veteransNumber
+        this.residentRegistrationNumber = request.residentRegistrationNumber
+        this.name = request.name
+        this.address = request.address
+        this.depositType = request.depositType
+        this.sibi = request.sibi
+        this.gubi = request.gubi
+        this.allowanceType = request.allowanceType
+        this.note = request.note
+    }
 }
