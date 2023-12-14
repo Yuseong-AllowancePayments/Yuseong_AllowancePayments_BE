@@ -3,7 +3,7 @@ package com.example.yuseong_allowancepayments_be.domain.allowance.presentation.d
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 
 data class UpdatePaymentStoppedRequest(
-    val serialNumber: Int,
+    val serialNumber: String,
     val hangJungDong: String,
     val veteransNumber: String,
     val residentRegistrationNumber: String,

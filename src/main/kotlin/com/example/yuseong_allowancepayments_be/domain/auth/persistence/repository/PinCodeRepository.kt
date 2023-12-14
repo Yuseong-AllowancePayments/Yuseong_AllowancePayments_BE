@@ -7,4 +7,6 @@ interface PinCodeRepository : JpaRepository<PinCode, String> {
     fun findByCode(code: String): PinCode?
 
     fun existsByCenterName(centerName: String): Boolean
+
+    fun deletePinCodeByCode(code: String)
 }

@@ -4,7 +4,7 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enu
 
 data class GetAllowanceResponse(
     val id: Long,
-    val serialNumber: Int,
+    val serialNumber: String,
     val haengJeongDong: String,
     val veteransNumber: String,
     val residentRegistrationNumber: String,

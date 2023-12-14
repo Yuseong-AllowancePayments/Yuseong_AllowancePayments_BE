@@ -1,7 +1,5 @@
 package com.example.yuseong_allowancepayments_be.domain.exel.dto
 
-import java.time.LocalDate
-
 data class ParseExelResponse(
     val paymentTargetTab: List<PaymentTargetResponse>,
     val cashPaymentTab: List<CashPaymentResponse>,
@@ -10,7 +8,7 @@ data class ParseExelResponse(
 )
 
 data class PaymentTargetResponse(
-    val serialNumber: Int,
+    val serialNumber: String,
 
     val hangJungDong: String,
 
@@ -38,7 +36,7 @@ data class PaymentTargetResponse(
 )
 
 data class CashPaymentResponse(
-    val serialNumber: Int,
+    val serialNumber: String,
 
     val hangJungDong: String,
 
@@ -60,7 +58,7 @@ data class CashPaymentResponse(
 )
 
 data class NewcomerResponse(
-    val serialNumber: Int,
+    val serialNumber: String,
 
     val hangJungDong: String,
 
@@ -88,7 +86,7 @@ data class NewcomerResponse(
 )
 
 data class PaymentStoppedResponse(
-    val serialNumber: Int,
+    val serialNumber: String,
 
     val hangJungDong: String,
 

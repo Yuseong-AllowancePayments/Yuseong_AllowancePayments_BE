@@ -7,22 +7,24 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.Pay
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.AllowanceInfo
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.poifs.crypt.Decryptor
+import org.apache.poi.poifs.crypt.EncryptionInfo
+import org.apache.poi.poifs.filesystem.POIFSFileSystem
 import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Component
-import org.springframework.util.PatternMatchUtils
 import org.springframework.web.multipart.MultipartFile
 
 @Component
 class ExcelUtil {
     fun getAllowanceInfo(file: MultipartFile, type: AllowanceType): AllowanceInfo {
         val workbook = file.transferToExcel()
-        val paymentTargets = getPaymentTarget(workbook.getSheetAt(1), type)
-        val cachePayments = getCashPayment(workbook.getSheetAt(2), type)
-        val newcomers = getNewcomer(workbook.getSheetAt(3), type)
-        val paymentStopped = getPaymentStopped(workbook.getSheetAt(4), type)
+        val paymentTargets = getPaymentTarget(workbook.getSheetAt(0), type)
+        val cachePayments = getCashPayment(workbook.getSheetAt(1), type)
+        val newcomers = getNewcomer(workbook.getSheetAt(2), type)
+        val paymentStopped = getPaymentStopped(workbook.getSheetAt(3), type)
 
         return AllowanceInfo(
             paymentTargets = paymentTargets,
@@ -34,13 +36,15 @@ class ExcelUtil {
 
     fun MultipartFile.transferToExcel(): Workbook {
         val inputStream = this.inputStream
-
+        val fs = POIFSFileSystem(this.inputStream)
+        val decryptor = Decryptor.getInstance(EncryptionInfo(fs))
+        decryptor.verifyPassword("2111")
         return inputStream.use {
             runCatching {
                 val splitFileName = this.originalFilename?.split('.')
                 when (splitFileName?.get(splitFileName.lastIndex)) {
-                    "xls" -> HSSFWorkbook(inputStream)
-                    "xlsx" -> XSSFWorkbook(inputStream)
+                    "xls" -> HSSFWorkbook(decryptor.getDataStream(fs))
+                    "xlsx" -> XSSFWorkbook(decryptor.getDataStream(fs))
                     else -> throw RuntimeException("Invalid File")
                 }
             }.onFailure {
@@ -55,10 +59,11 @@ class ExcelUtil {
         for (i in 4..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
             val depositType = row.getCell(6).stringCellValue
-            PatternMatchUtils.simpleMatch("*:*", depositType)
             results.add(
                 PaymentTarget(
-                    serialNumber = row.getCell(0).numericCellValue.toInt(),
+                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
+                        0
+                    ).numericCellValue.toString(),
                     hangJungDong = row.getCell(1).stringCellValue,
                     veteransNumber = row.getCell(2).stringCellValue,
                     name = row.getCell(3).stringCellValue,
@@ -81,20 +86,22 @@ class ExcelUtil {
 
     private fun getCashPayment(workSheet: Sheet, allowanceType: AllowanceType): List<CashPaymentStatus> {
         val results = mutableListOf<CashPaymentStatus>()
-        for (i in 4..workSheet.lastRowNum) {
+        for (i in 3..workSheet.lastRowNum) {
             val row = workSheet.getRow(i)
             results.add(
                 CashPaymentStatus(
-                    serialNumber = row.getCell(1).numericCellValue.toInt(),
-                    hangJungDong = row.getCell(2).stringCellValue,
-                    veteransNumber = row.getCell(3).stringCellValue,
-                    name = row.getCell(4).stringCellValue,
-                    residentRegistrationNumber = row.getCell(5).stringCellValue,
-                    address = row.getCell(6).stringCellValue,
-                    depositType = row.getCell(7).stringCellValue,
-                    sibi = row.getCell(8).numericCellValue.toInt(),
-                    gubi = row.getCell(9).numericCellValue.toInt(),
-                    note = row.getCell(10).stringCellValue,
+                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
+                        0
+                    ).numericCellValue.toString(),
+                    hangJungDong = row.getCell(1).stringCellValue,
+                    veteransNumber = row.getCell(2).stringCellValue,
+                    name = row.getCell(3).stringCellValue,
+                    residentRegistrationNumber = row.getCell(4).stringCellValue,
+                    address = row.getCell(5).stringCellValue,
+                    depositType = row.getCell(6).stringCellValue,
+                    sibi = row.getCell(7).numericCellValue.toInt(),
+                    gubi = row.getCell(8).numericCellValue.toInt(),
+                    note = row.getCell(9).stringCellValue,
                     allowanceType = allowanceType
                 )
             )
@@ -110,7 +117,9 @@ class ExcelUtil {
 
             results.add(
                 Newcomer(
-                    serialNumber = row.getCell(0).numericCellValue.toInt(),
+                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
+                        0
+                    ).numericCellValue.toString(),
                     hangJungDong = row.getCell(1).stringCellValue,
                     veteransNumber = row.getCell(2).stringCellValue,
                     name = row.getCell(3).stringCellValue,
@@ -137,7 +146,9 @@ class ExcelUtil {
             val row = workSheet.getRow(i)
             results.add(
                 PaymentStopped(
-                    serialNumber = row.getCell(0).numericCellValue.toInt(),
+                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
+                        0
+                    ).numericCellValue.toString(),
                     hangJungDong = row.getCell(1).stringCellValue,
                     veteransNumber = row.getCell(2).stringCellValue,
                     name = row.getCell(3).stringCellValue,

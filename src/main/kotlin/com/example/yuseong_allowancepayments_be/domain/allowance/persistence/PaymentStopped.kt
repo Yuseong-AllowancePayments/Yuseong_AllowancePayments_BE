@@ -11,8 +11,8 @@ class PaymentStopped(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(columnDefinition = "INTEGER")
-    var serialNumber: Int,
+    @Column(columnDefinition = "VARCHAR(20)")
+    var serialNumber: String,
 
     @Column(columnDefinition = "VARCHAR(30)")
     var hangJungDong: String,
@@ -45,7 +45,7 @@ class PaymentStopped(
     @Column(columnDefinition = "VARCHAR(19)")
     var allowanceType: AllowanceType,
 
-    @Column(columnDefinition = "VARCHAR(100)")
+    @Column(columnDefinition = "VARCHAR(200)")
     var note: String,
 
     @Column(columnDefinition = "VARCHAR(100)")
