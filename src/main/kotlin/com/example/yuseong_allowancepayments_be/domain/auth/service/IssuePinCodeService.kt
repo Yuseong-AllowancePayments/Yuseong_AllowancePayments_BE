@@ -19,7 +19,7 @@ class IssuePinCodeService(
 
         pinCodeRepository.save(
             PinCode(
-                code = (Random().nextInt(899999) + 100000).toString(),
+                code = (Random().nextInt(8999) + 1000).toString(),
                 centerName = request.centerName
             )
         )
