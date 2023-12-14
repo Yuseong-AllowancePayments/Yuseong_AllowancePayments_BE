@@ -4,6 +4,7 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enu
 import com.example.yuseong_allowancepayments_be.domain.exel.dto.ParseExelResponse
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.ExcelUtil
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestPart
 import org.springframework.web.bind.annotation.RestController
@@ -15,7 +16,7 @@ class ExelController(
     private val excelUtil: ExcelUtil
 ) {
 
-    @GetMapping("/parse")
+    @PostMapping("/parse")
     fun parseFile(@RequestPart file: MultipartFile): ParseExelResponse {
         val parsed = excelUtil.getAllowanceInfo(file, AllowanceType.WAR_VETERAN)
 
