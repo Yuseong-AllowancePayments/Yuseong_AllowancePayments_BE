@@ -1,5 +1,7 @@
 package com.example.yuseong_allowancepayments_be.domain.exel.dto
 
+import java.util.UUID
+
 data class ParseExelResponse(
     val paymentTargetTab: List<PaymentTargetResponse>,
     val cashPaymentTab: List<CashPaymentResponse>,
@@ -8,6 +10,8 @@ data class ParseExelResponse(
 )
 
 data class PaymentTargetResponse(
+    val id: Long? = null,
+
     val serialNumber: String,
 
     val hangJungDong: String,
@@ -36,6 +40,8 @@ data class PaymentTargetResponse(
 )
 
 data class CashPaymentResponse(
+    val id: Long? = null,
+
     val serialNumber: String,
 
     val hangJungDong: String,
@@ -58,6 +64,8 @@ data class CashPaymentResponse(
 )
 
 data class NewcomerResponse(
+    val id: Long? = null,
+
     val serialNumber: String,
 
     val hangJungDong: String,
@@ -86,6 +94,8 @@ data class NewcomerResponse(
 )
 
 data class PaymentStoppedResponse(
+    val id: Long? = null,
+
     val serialNumber: String,
 
     val hangJungDong: String,

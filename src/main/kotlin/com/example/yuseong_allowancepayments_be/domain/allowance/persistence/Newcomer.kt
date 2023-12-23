@@ -55,7 +55,7 @@ class Newcomer(
     var transferDate: String
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
-        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
+        id, serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
     )
 
     fun update(

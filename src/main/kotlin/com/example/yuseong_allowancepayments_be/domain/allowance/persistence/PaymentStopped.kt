@@ -58,7 +58,7 @@ class PaymentStopped(
     var transferAddress: String
 ) {
     fun toResponse(): PaymentStoppedResponse = PaymentStoppedResponse(
-        serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, stoppedReason, stoppedDate, transferAddress
+        id, serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, stoppedReason, stoppedDate, transferAddress
     )
 
     fun update(
