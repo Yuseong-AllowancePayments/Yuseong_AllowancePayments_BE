@@ -7,6 +7,7 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.Pay
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.AllowanceInfo
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
+import org.apache.poi.openxml4j.util.ZipSecureFile
 import org.apache.poi.poifs.crypt.Decryptor
 import org.apache.poi.poifs.crypt.EncryptionInfo
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
@@ -39,6 +40,7 @@ class ExcelUtil {
         val fs = POIFSFileSystem(this.inputStream)
         val decryptor = Decryptor.getInstance(EncryptionInfo(fs))
         decryptor.verifyPassword("2111")
+        ZipSecureFile.setMinInflateRatio(0.0)
         return inputStream.use {
             runCatching {
                 val splitFileName = this.originalFilename?.split('.')
