@@ -114,23 +114,23 @@ class ExportAllowanceInfoService(
         headerRow.createCell(11).setCellValue("전입(등록)일")
         headerRow.createCell(12).setCellValue("비고")
 
-        val newcomers = newcomerJpaRepository.findByAllowanceTypeOrderBySerialNumberAsc(type)
-        newcomers.forEachIndexed { idx, it ->
-            val row = sheet.createRow(idx + 1)
-            row.createCell(0).setCellValue(it.serialNumber.toString())
-            row.createCell(1).setCellValue(it.hangJungDong)
-            row.createCell(2).setCellValue(it.veteransNumber)
-            row.createCell(3).setCellValue(it.name)
-            row.createCell(4).setCellValue(it.residentRegistrationNumber)
-            row.createCell(5).setCellValue(it.address)
-            row.createCell(6).setCellValue(it.depositType)
-            row.createCell(7).setCellValue(it.bankName)
-            row.createCell(8).setCellValue(it.accountHolder)
-            row.createCell(9).setCellValue(it.bankAccountNumber)
-            row.createCell(10).setCellValue(it.transferReason)
-            row.createCell(11).setCellValue(it.transferDate)
-            row.createCell(12).setCellValue(it.note)
-        }
+//        val newcomers = newcomerJpaRepository.findByAllowanceTypeOrderBySerialNumberAsc(type)
+//        newcomers.forEachIndexed { idx, it ->
+//            val row = sheet.createRow(idx + 1)
+//            row.createCell(0).setCellValue(it.serialNumber)
+//            row.createCell(1).setCellValue(it.hangJungDong)
+//            row.createCell(2).setCellValue(it.veteransNumber)
+//            row.createCell(3).setCellValue(it.name)
+//            row.createCell(4).setCellValue(it.residentRegistrationNumber)
+//            row.createCell(5).setCellValue(it.address)
+//            row.createCell(6).setCellValue(it.depositType)
+//            row.createCell(7).setCellValue(it.bankName)
+//            row.createCell(8).setCellValue(it.accountHolder)
+//            row.createCell(9).setCellValue(it.bankAccountNumber)
+//            row.createCell(10).setCellValue(it.transferReason)
+//            row.createCell(11).setCellValue(it.transferDate)
+//            row.createCell(12).setCellValue(it.note)
+//        }
     }
 
     private fun createPaymentStoppedSheet(excel: Workbook, type: AllowanceType) {

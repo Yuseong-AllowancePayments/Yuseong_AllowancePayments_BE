@@ -1,7 +1,6 @@
 package com.example.yuseong_allowancepayments_be.thirdparty.excel
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.CashPaymentStatus
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.Newcomer
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentStopped
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.PaymentTarget
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
@@ -24,13 +23,13 @@ class ExcelUtil {
         val workbook = file.transferToExcel()
         val paymentTargets = getPaymentTarget(workbook.getSheetAt(0), type)
         val cachePayments = getCashPayment(workbook.getSheetAt(1), type)
-        val newcomers = getNewcomer(workbook.getSheetAt(2), type)
+//        val newcomers = getNewcomer(workbook.getSheetAt(2), type)
         val paymentStopped = getPaymentStopped(workbook.getSheetAt(3), type)
 
         return AllowanceInfo(
             paymentTargets = paymentTargets,
             cashPayments = cachePayments,
-            newcomers = newcomers,
+            newcomers = listOf(),
             paymentStopped = paymentStopped
         )
     }
@@ -39,8 +38,8 @@ class ExcelUtil {
         val inputStream = this.inputStream
         val fs = POIFSFileSystem(this.inputStream)
         val decryptor = Decryptor.getInstance(EncryptionInfo(fs))
-        decryptor.verifyPassword("2111")
         ZipSecureFile.setMinInflateRatio(0.0)
+        decryptor.verifyPassword("2111")
         return inputStream.use {
             runCatching {
                 val splitFileName = this.originalFilename?.split('.')
@@ -112,35 +111,35 @@ class ExcelUtil {
         return results
     }
 
-    private fun getNewcomer(workSheet: Sheet, allowanceType: AllowanceType): List<Newcomer> {
-        val results = mutableListOf<Newcomer>()
-        for (i in 2..workSheet.lastRowNum) {
-            val row = workSheet.getRow(i)
-
-            results.add(
-                Newcomer(
-                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
-                        0
-                    ).numericCellValue.toString(),
-                    hangJungDong = row.getCell(1).stringCellValue,
-                    veteransNumber = row.getCell(2).stringCellValue,
-                    name = row.getCell(3).stringCellValue,
-                    residentRegistrationNumber = row.getCell(4).stringCellValue,
-                    address = row.getCell(5).stringCellValue,
-                    depositType = row.getCell(6).stringCellValue,
-                    bankName = row.getCell(7).stringCellValue,
-                    accountHolder = row.getCell(8).stringCellValue,
-                    bankAccountNumber = row.getCell(9).stringCellValue,
-                    transferReason = row.getCell(10).stringCellValue,
-                    transferDate = if (row.getCell(11).cellType == CellType.STRING) row.getCell(11).stringCellValue else "",
-                    note = row.getCell(12).stringCellValue,
-                    allowanceType = allowanceType
-                )
-            )
-        }
-
-        return results
-    }
+//    private fun getNewcomer(workSheet: Sheet, allowanceType: AllowanceType): List<Newcomer> {
+//        val results = mutableListOf<Newcomer>()
+//        for (i in 2..workSheet.lastRowNum) {
+//            val row = workSheet.getRow(i)
+//
+//            results.add(
+//                Newcomer(
+//                    serialNumber = if (row.getCell(0).cellType == CellType.STRING) row.getCell(0).stringCellValue else row.getCell(
+//                        0
+//                    ).numericCellValue.toString(),
+//                    hangJungDong = row.getCell(1).stringCellValue,
+//                    veteransNumber = row.getCell(2).stringCellValue,
+//                    name = row.getCell(3).stringCellValue,
+//                    residentRegistrationNumber = row.getCell(4).stringCellValue,
+//                    address = row.getCell(5).stringCellValue,
+//                    depositType = row.getCell(6).stringCellValue,
+//                    bankName = row.getCell(7).stringCellValue,
+//                    accountHolder = row.getCell(8).stringCellValue,
+//                    bankAccountNumber = row.getCell(9).stringCellValue,
+//                    transferReason = row.getCell(10).stringCellValue,
+//                    transferDate = if (row.getCell(11).cellType == CellType.STRING) row.getCell(11).stringCellValue else "",
+//                    note = row.getCell(12).stringCellValue,
+//                    allowanceType = allowanceType
+//                )
+//            )
+//        }
+//
+//        return results
+//    }
 
     private fun getPaymentStopped(workSheet: Sheet, allowanceType: AllowanceType): List<PaymentStopped> {
         val results = mutableListOf<PaymentStopped>()

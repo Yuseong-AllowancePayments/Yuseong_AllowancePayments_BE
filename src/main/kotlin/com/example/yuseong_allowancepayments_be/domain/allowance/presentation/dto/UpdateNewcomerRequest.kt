@@ -1,20 +1,53 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
-
 data class UpdateNewcomerRequest(
-    val serialNumber: String,
-    val hangJungDong: String,
-    val veteransNumber: String,
-    val residentRegistrationNumber: String,
-    val name: String,
-    val address: String,
-    val depositType: String,
-    val bankName: String,
-    val accountHolder: String,
-    val bankAccountNumber: String,
-    val allowanceType: AllowanceType,
-    val note: String,
-    val transferReason: String,
-    val transferDate: String
+    var serialNumber: String,
+
+    var warRegistrationNumber: String?,
+
+    var applicantName: String,
+
+    var applicantID: String,
+
+    var applicantBirthday: String?,
+
+    var applicantPostalCode: String,
+
+    var applicantAddressDetail: String,
+
+    var applicantPhoneNumber: String,
+
+    var hangJungDong: String,
+
+    var bankName: String,
+
+    var bankAccountNumber: String,
+
+    var accountHolder: String,
+
+    var transferDate: String,
+
+    var applicationDate: String,
+
+    var applicationReason: String,
+
+    var veteransNumber: String?,
+
+    var nationalMeritName: String?,
+
+    var nationalMeritID: String?,
+
+    var nationalMeritDateOfDeath: String?,
+
+    var warType: String?,
+
+    var veteransType: String?,
+
+    var applicantGender: String?,
+
+    var familyRelation: String?,
+
+    var bereavedFamily: String?,
+
+    var note: String,
 )

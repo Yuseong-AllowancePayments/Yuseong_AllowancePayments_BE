@@ -3,7 +3,6 @@ package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.exel.dto.NewcomerResponse
-import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
@@ -14,45 +13,56 @@ class Newcomer(
     @Column(columnDefinition = "VARCHAR(20)")
     var serialNumber: String,
 
-    @Column(columnDefinition = "VARCHAR(30)")
+    var warRegistrationNumber: String? = null,
+
+    var applicantName: String,
+
+    var applicantID: String,
+
+    var applicantBirthday: String? = null,
+
+    var applicantPostalCode: String,
+
+    var applicantAddressDetail: String,
+
+    var applicantPhoneNumber: String,
+
     var hangJungDong: String,
 
-    @Column(columnDefinition = "VARCHAR(30)")
-    var veteransNumber: String,
-
-    @Column(columnDefinition = "VARCHAR(13)")
-    var residentRegistrationNumber: String,
-
-    @Column(columnDefinition = "VARCHAR(10)")
-    var name: String,
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    var address: String,
-
-    @Column(columnDefinition = "VARCHAR(30)")
-    var depositType: String,
-
-    @Column(columnDefinition = "VARCHAR(30)")
     var bankName: String,
 
-    @Column(columnDefinition = "VARCHAR(10)")
-    var accountHolder: String,
-
-    @Column(columnDefinition = "VARCHAR(30)")
     var bankAccountNumber: String,
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(19)")
-    var allowanceType: AllowanceType,
+    var accountHolder: String,
 
-    @Column(columnDefinition = "VARCHAR(200)")
+    var transferDate: String,
+
+    var applicationDate: String,
+
+    var applicationReason: String,
+
+    var veteransNumber: String? = null,
+
+    var nationalMeritName: String? = null,
+
+    var nationalMeritID: String? = null,
+
+    var nationalMeritDateOfDeath: String? = null,
+
+    var warType: String? = null,
+
+    var veteransType: String? = null,
+
+    var applicantGender: String? = null,
+
+    var familyRelation: String? = null,
+
+    var bereavedFamily: String? = null,
+
     var note: String,
 
-    @Column(columnDefinition = "VARCHAR(100)")
-    var transferReason: String,
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    var transferDate: String
+    @Enumerated(EnumType.STRING)
+    var allowanceType: AllowanceType
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
         id, serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
@@ -62,17 +72,29 @@ class Newcomer(
         request: UpdateNewcomerRequest
     ) {
         this.serialNumber = request.serialNumber
+        this.warRegistrationNumber = request.warRegistrationNumber
+        this.applicantName = request.applicantName
+        this.applicantID = request.applicantID
+        this.applicantBirthday = request.applicantBirthday
+        this.applicantPostalCode = request.applicantPostalCode
+        this.applicantAddressDetail = request.applicantAddressDetail
+        this.applicantPhoneNumber = request.applicantPhoneNumber
         this.hangJungDong = request.hangJungDong
-        this.veteransNumber = request.veteransNumber
-        this.residentRegistrationNumber = request.residentRegistrationNumber
-        this.name = request.name
-        this.address = request.address
-        this.depositType = request.depositType
         this.bankName = request.bankName
         this.bankAccountNumber = request.bankAccountNumber
-        this.allowanceType = request.allowanceType
-        this.note = request.note
-        this.transferReason = request.transferReason
+        this.accountHolder = request.accountHolder
         this.transferDate = request.transferDate
+        this.applicationDate = request.applicationDate
+        this.applicationReason = request.applicationReason
+        this.veteransNumber = request.veteransNumber
+        this.nationalMeritName = request.nationalMeritName
+        this.nationalMeritID = request.nationalMeritID
+        this.nationalMeritDateOfDeath = request.nationalMeritDateOfDeath
+        this.warType = request.warType
+        this.veteransType = request.veteransType
+        this.applicantGender = request.applicantGender
+        this.familyRelation = request.familyRelation
+        this.bereavedFamily = request.bereavedFamily
+        this.note = request.note
     }
 }

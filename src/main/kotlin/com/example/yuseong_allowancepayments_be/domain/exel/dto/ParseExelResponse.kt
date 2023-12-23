@@ -68,29 +68,53 @@ data class NewcomerResponse(
 
     val serialNumber: String,
 
-    val hangJungDong: String,
+    var warRegistrationNumber: String? = null,
 
-    val veteransNumber: String,
+    var applicantName: String,
 
-    val residentRegistrationNumber: String,
+    var applicantID: String,
 
-    val name: String,
+    var applicantBirthday: String? = null,
 
-    val address: String,
+    var applicantPostalCode: String,
 
-    val depositType: String,
+    var applicantAddressDetail: String,
 
-    val bankName: String,
+    var applicantPhoneNumber: String,
 
-    val accountHolder: String,
+    var hangJungDong: String,
 
-    val bankAccountNumber: String,
+    var bankName: String,
 
-    val note: String,
+    var bankAccountNumber: String,
 
-    val transferReason: String,
+    var accountHolder: String,
 
-    val transferDate: String
+    var transferDate: String,
+
+    var applicationDate: String,
+
+    var applicationReason: String,
+
+    var veteransNumber: String? = null,
+
+    var nationalMeritName: String? = null,
+
+    var nationalMeritID: String? = null,
+
+    var nationalMeritDateOfDeath: String? = null,
+
+    var warType: String? = null,
+
+    var veteransType: String? = null,
+
+    var applicantGender: String? = null,
+
+    var familyRelation: String? = null,
+
+    var bereavedFamily: String? = null,
+
+    var note: String,
 )
 
 data class PaymentStoppedResponse(
