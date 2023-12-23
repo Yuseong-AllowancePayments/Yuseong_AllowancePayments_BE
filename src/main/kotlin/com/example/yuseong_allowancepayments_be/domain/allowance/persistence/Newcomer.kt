@@ -3,7 +3,13 @@ package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.exel.dto.NewcomerResponse
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class Newcomer(
@@ -65,7 +71,12 @@ class Newcomer(
     var allowanceType: AllowanceType
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
-        id, serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, transferReason, transferDate
+        id, serialNumber, warRegistrationNumber, applicantName, applicantID,
+        applicantBirthday, applicantPostalCode, applicantAddressDetail,
+        applicantPhoneNumber, hangJungDong, bankName, bankAccountNumber,
+        accountHolder, transferDate, applicationDate, applicationReason,
+        veteransNumber, nationalMeritName, nationalMeritID, nationalMeritDateOfDeath,
+        warType, veteransType, applicantGender, familyRelation, bereavedFamily, note
     )
 
     fun update(
