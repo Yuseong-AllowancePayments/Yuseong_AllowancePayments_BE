@@ -26,6 +26,10 @@ class ExceptionFilter(
         } catch (e: Exception) {
             e.printStackTrace()
             when (e) {
+                is InternalServerErrorException -> {
+                    e.printStackTrace()
+                    sendErrorMessage(e, response)
+                }
                 is CustomException -> sendErrorMessage(e, response)
                 else -> {
                     e.printStackTrace()
