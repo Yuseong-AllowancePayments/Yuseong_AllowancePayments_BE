@@ -70,7 +70,6 @@ class CashPaymentStatus(
         this.depositType = request.depositType
         this.sibi = request.sibi
         this.gubi = request.gubi
-        this.allowanceType = request.allowanceType
         this.note = request.note
     }
 }

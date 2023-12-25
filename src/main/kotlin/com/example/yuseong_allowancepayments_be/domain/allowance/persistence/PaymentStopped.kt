@@ -73,7 +73,6 @@ class PaymentStopped(
         this.depositType = request.depositType
         this.bankName = request.bankName
         this.bankAccountNumber = request.bankAccountNumber
-        this.allowanceType = request.allowanceType
         this.note = request.note
         this.stoppedReason = request.stoppedReason
         this.stoppedDate = request.stoppedDate
