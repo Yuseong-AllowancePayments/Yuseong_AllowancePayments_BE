@@ -12,6 +12,5 @@ data class UpdateCashPaymentStatusRequest(
     val depositType: String,
     val sibi: Int,
     val gubi: Int,
-    val allowanceType: AllowanceType,
     val note: String
 )

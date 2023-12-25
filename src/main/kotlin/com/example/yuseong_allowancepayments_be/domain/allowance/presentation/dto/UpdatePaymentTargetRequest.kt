@@ -15,6 +15,5 @@ data class UpdatePaymentTargetRequest(
     val bankAccountNumber: String,
     val sibi: Int,
     val gubi: Int,
-    val allowanceType: AllowanceType,
     val note: String
 )

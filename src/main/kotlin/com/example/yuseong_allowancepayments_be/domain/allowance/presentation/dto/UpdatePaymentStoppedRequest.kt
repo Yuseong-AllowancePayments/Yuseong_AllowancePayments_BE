@@ -13,7 +13,6 @@ data class UpdatePaymentStoppedRequest(
     val bankName: String,
     val accountHolder: String,
     val bankAccountNumber: String,
-    val allowanceType: AllowanceType,
     val note: String,
     val stoppedReason: String,
     val stoppedDate: String,
