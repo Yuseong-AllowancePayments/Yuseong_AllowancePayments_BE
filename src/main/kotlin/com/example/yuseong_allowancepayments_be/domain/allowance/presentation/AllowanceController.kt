@@ -6,10 +6,27 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dt
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentStoppedRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentTargetRequest
-import com.example.yuseong_allowancepayments_be.domain.allowance.service.*
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.ExportAllowanceInfoService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.GetAllowanceService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.SaveAllowanceInfoService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.UpdateCashPaymentStatusService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.UpdateNewcomerService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.UpdatePaymentStoppedService
+import com.example.yuseong_allowancepayments_be.domain.allowance.service.UpdatePaymentTargetService
 import org.jetbrains.annotations.NotNull
-import org.springframework.web.bind.annotation.*
+import org.springframework.http.HttpHeaders
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RequestPart
+import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
+import java.net.URLEncoder
+import java.time.LocalDate
 import javax.servlet.http.HttpServletResponse
 
 @RestController
@@ -33,11 +50,15 @@ class AllowanceController(
     fun exportData(
         @RequestParam type: AllowanceType,
         response: HttpServletResponse
-    ) {
+    ): ByteArray {
         val file = exportAllowanceInfoService.execute(type)
 
-        response.contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        response.outputStream.write(file)
+        response.setHeader(
+            HttpHeaders.CONTENT_DISPOSITION,
+            "attachment; filename=${URLEncoder.encode("${LocalDate.now().year}.${LocalDate.now().month.value}월 ${type.fileName}", "UTF-8")}.xlsx"
+        )
+
+        return file
     }
 
     @GetMapping

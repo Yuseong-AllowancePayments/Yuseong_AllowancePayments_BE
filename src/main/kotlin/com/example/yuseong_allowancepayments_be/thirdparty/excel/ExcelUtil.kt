@@ -5,6 +5,8 @@ import org.apache.poi.openxml4j.util.ZipSecureFile
 import org.apache.poi.poifs.crypt.Decryptor
 import org.apache.poi.poifs.crypt.EncryptionInfo
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
+import org.apache.poi.ss.usermodel.Row
+import org.apache.poi.ss.usermodel.Sheet
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.web.multipart.MultipartFile
@@ -28,4 +30,14 @@ fun MultipartFile.transferToExcel(password: String): Workbook {
             throw RuntimeException("Invalid File")
         }.getOrThrow()
     }
+}
+
+fun Workbook.setUpAllowanceSheetWithHeader(sheetName: String, items: List<String>): Sheet {
+    val sheet = this.createSheet(sheetName)
+    val headerRow = sheet.createRow(0)
+    items.forEachIndexed { idx, item ->
+        headerRow.createCell(idx).setCellValue(item).also {  }
+    }
+
+    return sheet
 }
