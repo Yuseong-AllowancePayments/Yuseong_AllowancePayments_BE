@@ -1,12 +1,12 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.presentation
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.QueryAllowanceInfoResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateCashPaymentStatusRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentStoppedRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentTargetRequest
 import com.example.yuseong_allowancepayments_be.domain.allowance.service.*
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.ParseExelResponse
 import org.jetbrains.annotations.NotNull
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
@@ -43,7 +43,7 @@ class AllowanceController(
     @GetMapping
     fun getAllowanceList(
         @RequestParam type: AllowanceType,
-    ): ParseExelResponse {
+    ): QueryAllowanceInfoResponse {
         return getAllowanceService.execute(type)
     }
 

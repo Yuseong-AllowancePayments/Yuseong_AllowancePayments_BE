@@ -5,7 +5,7 @@ import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.rep
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.NewcomerJpaRepository
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.PaymentStoppedJpaRepository
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.PaymentTargetJpaRepository
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.ParseExelResponse
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.QueryAllowanceInfoResponse
 import org.springframework.stereotype.Service
 
 @Service
@@ -15,7 +15,7 @@ class GetAllowanceService(
     private val newcomerJpaRepository: NewcomerJpaRepository,
     private val paymentStoppedJpaRepository: PaymentStoppedJpaRepository
 ) {
-    fun execute(type: AllowanceType): ParseExelResponse {
+    fun execute(type: AllowanceType): QueryAllowanceInfoResponse {
         val paymentTargets = paymentTargetJpaRepository
             .findByAllowanceTypeOrderBySerialNumberAsc(type)
         val cashPaymentStatusList = cashPaymentStatusJpaRepository
@@ -25,7 +25,7 @@ class GetAllowanceService(
         val paymentStoppedList = paymentStoppedJpaRepository
             .findByAllowanceTypeOrderBySerialNumberAsc(type)
 
-        return ParseExelResponse(
+        return QueryAllowanceInfoResponse(
             paymentTargetTab = paymentTargets.map { it.toResponse() },
             cashPaymentTab = cashPaymentStatusList.map { it.toResponse() },
             newComerTab = newcomers.map { it.toResponse() },
