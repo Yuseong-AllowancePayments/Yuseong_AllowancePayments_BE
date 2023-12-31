@@ -5,7 +5,7 @@ import com.example.yuseong_allowancepayments_be.domain.auth.exception.PinCodeAlr
 import com.example.yuseong_allowancepayments_be.domain.auth.persistence.PinCode
 import com.example.yuseong_allowancepayments_be.domain.auth.persistence.repository.PinCodeRepository
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.Random
 
 @Service
 class IssuePinCodeService(

@@ -1,8 +1,8 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.NewcomerResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.NewcomerResponse
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType

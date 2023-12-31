@@ -1,6 +1,10 @@
 package com.example.yuseong_allowancepayments_be.domain.user.domain
 
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class User(
@@ -12,5 +16,4 @@ class User(
 
     @Column(columnDefinition = "VARCHAR(60)")
     val password: String
-) {
-}
+)

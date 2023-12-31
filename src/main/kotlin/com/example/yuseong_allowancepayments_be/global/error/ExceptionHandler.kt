@@ -12,8 +12,8 @@ class ExceptionHandler {
     @ExceptionHandler(CustomException::class)
     fun customException(e: CustomException): ResponseEntity<BaseErrorResponse> {
         return ResponseEntity(
-                BaseErrorResponse.of(e),
-                HttpStatus.valueOf(e.status)
+            BaseErrorResponse.of(e),
+            HttpStatus.valueOf(e.status)
         )
     }
 }

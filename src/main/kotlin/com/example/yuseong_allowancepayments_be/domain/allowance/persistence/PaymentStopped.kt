@@ -1,10 +1,15 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.PaymentStoppedResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentStoppedRequest
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.PaymentStoppedResponse
-import java.time.LocalDate
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class PaymentStopped(
@@ -58,7 +63,21 @@ class PaymentStopped(
     var transferAddress: String
 ) {
     fun toResponse(): PaymentStoppedResponse = PaymentStoppedResponse(
-        id!!, serialNumber, hangJungDong, veteransNumber, residentRegistrationNumber, name, address, depositType, bankName, accountHolder, bankAccountNumber, note, stoppedReason, stoppedDate, transferAddress
+        id!!,
+        serialNumber,
+        hangJungDong,
+        veteransNumber,
+        residentRegistrationNumber,
+        name,
+        address,
+        depositType,
+        bankName,
+        accountHolder,
+        bankAccountNumber,
+        note,
+        stoppedReason,
+        stoppedDate,
+        transferAddress
     )
 
     fun update(

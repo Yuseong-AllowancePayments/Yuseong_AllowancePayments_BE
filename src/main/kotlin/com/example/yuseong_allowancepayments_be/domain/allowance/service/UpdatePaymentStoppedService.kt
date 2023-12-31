@@ -12,7 +12,8 @@ class UpdatePaymentStoppedService(
 ) {
     @Transactional
     fun execute(id: Long, request: UpdatePaymentStoppedRequest) {
-        val paymentStopped = paymentStoppedJpaRepository.findPaymentStoppedById(id) ?: throw UserNotFoundException.EXCEPTION
+        val paymentStopped =
+            paymentStoppedJpaRepository.findPaymentStoppedById(id) ?: throw UserNotFoundException.EXCEPTION
         paymentStopped.update(request)
     }
 }

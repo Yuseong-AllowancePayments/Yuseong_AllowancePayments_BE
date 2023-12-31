@@ -12,7 +12,8 @@ class UpdateCashPaymentStatusService(
 ) {
     @Transactional
     fun execute(id: Long, updateCashPaymentStatusRequest: UpdateCashPaymentStatusRequest) {
-        val cashPaymentStatus = cashPaymentStatusJpaRepository.findCashPaymentStatusById(id) ?: throw UserNotFoundException.EXCEPTION
+        val cashPaymentStatus =
+            cashPaymentStatusJpaRepository.findCashPaymentStatusById(id) ?: throw UserNotFoundException.EXCEPTION
         cashPaymentStatus.update(updateCashPaymentStatusRequest)
     }
 }

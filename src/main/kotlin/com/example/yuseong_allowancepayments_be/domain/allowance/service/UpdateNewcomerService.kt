@@ -1,6 +1,5 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.service
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.Newcomer
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.repository.NewcomerJpaRepository
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateNewcomerRequest
 import com.example.yuseong_allowancepayments_be.domain.user.exception.UserNotFoundException

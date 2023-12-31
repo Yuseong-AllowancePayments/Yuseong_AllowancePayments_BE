@@ -7,12 +7,12 @@ import org.springframework.data.redis.core.index.Indexed
 
 @RedisHash
 class RefreshToken(
-        @Id
-        val email: String,
+    @Id
+    val email: String,
 
-        @Indexed
-        val token: String,
+    @Indexed
+    val token: String,
 
-        @TimeToLive
-        val expiredAt: Long
+    @TimeToLive
+    val expiredAt: Long
 )

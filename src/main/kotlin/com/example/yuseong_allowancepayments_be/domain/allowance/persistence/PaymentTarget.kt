@@ -1,9 +1,15 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.PaymentTargetResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdatePaymentTargetRequest
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.PaymentTargetResponse
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class PaymentTarget(
@@ -69,6 +75,7 @@ class PaymentTarget(
         gubi = gubi,
         note = note
     )
+
     fun update(
         request: UpdatePaymentTargetRequest
     ) {

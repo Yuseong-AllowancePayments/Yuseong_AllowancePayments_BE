@@ -1,9 +1,15 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.persistence
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
+import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.CashPaymentResponse
 import com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto.UpdateCashPaymentStatusRequest
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.CashPaymentResponse
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class CashPaymentStatus(

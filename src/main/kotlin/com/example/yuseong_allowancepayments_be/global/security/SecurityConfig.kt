@@ -21,19 +21,19 @@ class SecurityConfig(
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-                .csrf().disable()
-                .formLogin().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().cors()
+            .csrf().disable()
+            .formLogin().disable()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().cors()
         http
-                .authorizeRequests()
+            .authorizeRequests()
 
-                .antMatchers("/**").permitAll()
+            .antMatchers("/**").permitAll()
 
-                .anyRequest().permitAll()
+            .anyRequest().permitAll()
 
-                .and().apply(FilterConfig(jwtTokenParser, objectMapper))
+            .and().apply(FilterConfig(jwtTokenParser, objectMapper))
 
         return http.build()
     }

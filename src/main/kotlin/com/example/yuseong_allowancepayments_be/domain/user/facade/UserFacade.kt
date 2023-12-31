@@ -4,7 +4,6 @@ import com.example.yuseong_allowancepayments_be.domain.user.domain.User
 import com.example.yuseong_allowancepayments_be.domain.user.domain.repository.UserJpaRepository
 import com.example.yuseong_allowancepayments_be.domain.user.exception.UserNotFoundException
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
 
 @Component

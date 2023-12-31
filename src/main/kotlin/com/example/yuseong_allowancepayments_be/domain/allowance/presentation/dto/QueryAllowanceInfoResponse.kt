@@ -1,8 +1,6 @@
-package com.example.yuseong_allowancepayments_be.domain.exel.dto
+package com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto
 
-import java.util.UUID
-
-data class ParseExelResponse(
+data class QueryAllowanceInfoResponse(
     val paymentTargetTab: List<PaymentTargetResponse>,
     val cashPaymentTab: List<CashPaymentResponse>,
     val newComerTab: List<NewcomerResponse>,

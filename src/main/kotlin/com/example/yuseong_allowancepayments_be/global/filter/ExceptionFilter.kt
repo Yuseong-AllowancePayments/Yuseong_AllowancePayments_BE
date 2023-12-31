@@ -30,6 +30,7 @@ class ExceptionFilter(
                     e.printStackTrace()
                     sendErrorMessage(e, response)
                 }
+
                 is CustomException -> sendErrorMessage(e, response)
                 else -> {
                     e.printStackTrace()

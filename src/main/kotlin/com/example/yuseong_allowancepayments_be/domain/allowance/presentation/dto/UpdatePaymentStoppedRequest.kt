@@ -1,7 +1,5 @@
 package com.example.yuseong_allowancepayments_be.domain.allowance.presentation.dto
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
-
 data class UpdatePaymentStoppedRequest(
     val serialNumber: String,
     val hangJungDong: String,

@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.exel
+package com.example.yuseong_allowancepayments_be.domain.exel.presentation
 
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType.HONORABLE_ALLOWANCE
 import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType.WAR_VETERAN
