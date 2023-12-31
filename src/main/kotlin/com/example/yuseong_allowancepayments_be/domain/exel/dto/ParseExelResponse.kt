@@ -1,7 +1,5 @@
 package com.example.yuseong_allowancepayments_be.domain.exel.dto
 
-import java.util.UUID
-
 data class ParseExelResponse(
     val paymentTargetTab: List<PaymentTargetResponse>,
     val cashPaymentTab: List<CashPaymentResponse>,
@@ -10,8 +8,6 @@ data class ParseExelResponse(
 )
 
 data class PaymentTargetResponse(
-    val id: Long? = null,
-
     val serialNumber: String,
 
     val hangJungDong: String,
@@ -40,8 +36,6 @@ data class PaymentTargetResponse(
 )
 
 data class CashPaymentResponse(
-    val id: Long? = null,
-
     val serialNumber: String,
 
     val hangJungDong: String,
@@ -64,23 +58,15 @@ data class CashPaymentResponse(
 )
 
 data class NewcomerResponse(
-    val id: Long? = null,
-
-    val serialNumber: String,
-
-    var warRegistrationNumber: String? = null,
+    var serialNumber: String,
 
     var applicantName: String,
 
     var applicantID: String,
 
-    var applicantBirthday: String? = null,
-
-    var applicantPostalCode: String,
-
     var applicantAddressDetail: String,
 
-    var applicantPhoneNumber: String,
+    var applicantPhoneNumber: String?,
 
     var hangJungDong: String,
 
@@ -96,30 +82,34 @@ data class NewcomerResponse(
 
     var applicationReason: String,
 
-    var veteransNumber: String? = null,
-
-    var nationalMeritName: String? = null,
-
-    var nationalMeritID: String? = null,
-
-    var nationalMeritDateOfDeath: String? = null,
-
-    var warType: String? = null,
-
-    var veteransType: String? = null,
-
-    var applicantGender: String? = null,
-
-    var familyRelation: String? = null,
-
-    var bereavedFamily: String? = null,
+    var depositType: String,
 
     var note: String,
+
+    var applicantBirthday: String?,
+
+    var warRegistrationNumber: String?,
+
+    var veteransNumber: String?,
+
+    var nationalMeritName: String?,
+
+    var nationalMeritID: String?,
+
+    var nationalMeritDateOfDeath: String?,
+
+    var warType: String?,
+
+    var veteransType: String?,
+
+    var applicantGender: String?,
+
+    var familyRelation: String?,
+
+    var bereavedFamily: String?,
 )
 
 data class PaymentStoppedResponse(
-    val id: Long? = null,
-
     val serialNumber: String,
 
     val hangJungDong: String,

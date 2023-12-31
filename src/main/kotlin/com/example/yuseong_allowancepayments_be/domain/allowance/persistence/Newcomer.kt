@@ -19,19 +19,13 @@ class Newcomer(
     @Column(columnDefinition = "VARCHAR(20)")
     var serialNumber: String,
 
-    var warRegistrationNumber: String? = null,
-
     var applicantName: String,
 
     var applicantID: String,
 
-    var applicantBirthday: String? = null,
-
-    var applicantPostalCode: String,
-
     var applicantAddressDetail: String,
 
-    var applicantPhoneNumber: String,
+    var applicantPhoneNumber: String? = null,
 
     var hangJungDong: String,
 
@@ -46,6 +40,14 @@ class Newcomer(
     var applicationDate: String,
 
     var applicationReason: String,
+
+    var depositType: String,
+
+    var note: String,
+
+    var applicantBirthday: String? = null,
+
+    var warRegistrationNumber: String? = null,
 
     var veteransNumber: String? = null,
 
@@ -65,18 +67,16 @@ class Newcomer(
 
     var bereavedFamily: String? = null,
 
-    var note: String,
-
     @Enumerated(EnumType.STRING)
     var allowanceType: AllowanceType
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
-        id, serialNumber, warRegistrationNumber, applicantName, applicantID,
-        applicantBirthday, applicantPostalCode, applicantAddressDetail,
+        serialNumber, applicantName, applicantID, applicantAddressDetail,
         applicantPhoneNumber, hangJungDong, bankName, bankAccountNumber,
         accountHolder, transferDate, applicationDate, applicationReason,
-        veteransNumber, nationalMeritName, nationalMeritID, nationalMeritDateOfDeath,
-        warType, veteransType, applicantGender, familyRelation, bereavedFamily, note
+        depositType, note, applicantBirthday, warRegistrationNumber, veteransNumber,
+        nationalMeritName, nationalMeritID, nationalMeritDateOfDeath, warType, veteransType,
+        applicantGender, familyRelation, bereavedFamily
     )
 
     fun update(
@@ -87,7 +87,6 @@ class Newcomer(
         this.applicantName = request.applicantName
         this.applicantID = request.applicantID
         this.applicantBirthday = request.applicantBirthday
-        this.applicantPostalCode = request.applicantPostalCode
         this.applicantAddressDetail = request.applicantAddressDetail
         this.applicantPhoneNumber = request.applicantPhoneNumber
         this.hangJungDong = request.hangJungDong
@@ -96,6 +95,7 @@ class Newcomer(
         this.accountHolder = request.accountHolder
         this.transferDate = request.transferDate
         this.applicationDate = request.applicationDate
+        this.depositType = request.depositType
         this.applicationReason = request.applicationReason
         this.veteransNumber = request.veteransNumber
         this.nationalMeritName = request.nationalMeritName

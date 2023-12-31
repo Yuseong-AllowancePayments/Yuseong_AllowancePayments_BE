@@ -3,19 +3,13 @@ package com.example.yuseong_allowancepayments_be.domain.allowance.presentation.d
 data class UpdateNewcomerRequest(
     var serialNumber: String,
 
-    var warRegistrationNumber: String?,
-
     var applicantName: String,
 
     var applicantID: String,
 
-    var applicantBirthday: String?,
-
-    var applicantPostalCode: String,
-
     var applicantAddressDetail: String,
 
-    var applicantPhoneNumber: String,
+    var applicantPhoneNumber: String?,
 
     var hangJungDong: String,
 
@@ -30,6 +24,16 @@ data class UpdateNewcomerRequest(
     var applicationDate: String,
 
     var applicationReason: String,
+
+    var depositType: String,
+
+    var note: String,
+
+    var applicantBirthday: String?,
+
+    var applicantPostalCode: String?,
+
+    var warRegistrationNumber: String?,
 
     var veteransNumber: String?,
 
@@ -48,6 +52,4 @@ data class UpdateNewcomerRequest(
     var familyRelation: String?,
 
     var bereavedFamily: String?,
-
-    var note: String,
 )

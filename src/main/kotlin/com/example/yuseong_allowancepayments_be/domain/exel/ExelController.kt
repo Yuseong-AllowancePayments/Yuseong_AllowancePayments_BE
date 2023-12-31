@@ -1,9 +1,10 @@
 package com.example.yuseong_allowancepayments_be.domain.exel
 
-import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType
-import com.example.yuseong_allowancepayments_be.domain.exel.dto.ParseExelResponse
-import com.example.yuseong_allowancepayments_be.thirdparty.excel.ExcelUtil
-import org.springframework.web.bind.annotation.GetMapping
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType.HONORABLE_ALLOWANCE
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType.WAR_VETERAN
+import com.example.yuseong_allowancepayments_be.domain.allowance.persistence.enums.AllowanceType.WAR_VETERAN_SPOUSE
+import com.example.yuseong_allowancepayments_be.thirdparty.excel.AllowanceExcelUtil
+import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.ParseAllowanceInfo
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestPart
@@ -13,18 +14,17 @@ import org.springframework.web.multipart.MultipartFile
 @RestController
 @RequestMapping("/excel")
 class ExelController(
-    private val excelUtil: ExcelUtil
+    private val allowanceExcelUtil: AllowanceExcelUtil
 ) {
+    @PostMapping("/veteran")
+    fun parseVeteran(@RequestPart file: MultipartFile): ParseAllowanceInfo =
+        allowanceExcelUtil.parseAllowanceExcel(file, WAR_VETERAN)
 
-    @PostMapping("/parse")
-    fun parseFile(@RequestPart file: MultipartFile): ParseExelResponse {
-        val parsed = excelUtil.getAllowanceInfo(file, AllowanceType.WAR_VETERAN)
+    @PostMapping("/spouce")
+    fun parseSpouce(@RequestPart file: MultipartFile): ParseAllowanceInfo =
+        allowanceExcelUtil.parseAllowanceExcel(file, WAR_VETERAN_SPOUSE)
 
-        return ParseExelResponse(
-            paymentTargetTab = parsed.paymentTargets.map { it.toResponse() },
-            cashPaymentTab = parsed.cashPayments.map { it.toResponse() },
-            newComerTab = parsed.newcomers.map { it.toResponse() },
-            paymentStoppedTab = parsed.paymentStopped.map { it.toResponse() }
-        )
-    }
+    @PostMapping("/courtesy")
+    fun parseCourtesy(@RequestPart file: MultipartFile): ParseAllowanceInfo =
+        allowanceExcelUtil.parseAllowanceExcel(file, HONORABLE_ALLOWANCE)
 }
