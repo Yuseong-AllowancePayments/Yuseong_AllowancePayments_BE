@@ -71,7 +71,7 @@ class Newcomer(
     var allowanceType: AllowanceType
 ) {
     fun toResponse(): NewcomerResponse = NewcomerResponse(
-        serialNumber, applicantName, applicantID, applicantAddressDetail,
+        id!!, serialNumber, applicantName, applicantID, applicantAddressDetail,
         applicantPhoneNumber, hangJungDong, bankName, bankAccountNumber,
         accountHolder, transferDate, applicationDate, applicationReason,
         depositType, note, applicantBirthday, warRegistrationNumber, veteransNumber,

@@ -45,7 +45,7 @@ class CashPaymentStatus(
     var note: String
 ) {
     fun toResponse(): CashPaymentResponse = CashPaymentResponse(
-        id,
+        id!!,
         serialNumber,
         hangJungDong,
         veteransNumber,

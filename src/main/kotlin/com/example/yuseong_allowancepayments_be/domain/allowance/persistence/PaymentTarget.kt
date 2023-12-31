@@ -54,7 +54,7 @@ class PaymentTarget(
     var note: String
 ) {
     fun toResponse(): PaymentTargetResponse = PaymentTargetResponse(
-        id = id,
+        id = id!!,
         serialNumber = serialNumber,
         hangJungDong = hangJungDong,
         veteransNumber = veteransNumber,
