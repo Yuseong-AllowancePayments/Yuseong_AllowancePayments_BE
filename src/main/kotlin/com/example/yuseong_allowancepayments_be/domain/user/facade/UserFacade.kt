@@ -1,8 +1,8 @@
 package com.example.yuseong_allowancepayments_be.domain.user.facade
 
+import com.example.yuseong_allowancepayments_be.domain.user.exception.UserNotFoundException
 import com.example.yuseong_allowancepayments_be.domain.user.persistence.User
 import com.example.yuseong_allowancepayments_be.domain.user.persistence.repository.UserJpaRepository
-import com.example.yuseong_allowancepayments_be.domain.user.exception.UserNotFoundException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
