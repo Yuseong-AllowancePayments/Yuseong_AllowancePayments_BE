@@ -12,6 +12,7 @@ import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.PaymentStop
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.PaymentTargetInfo
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.SNewcomerInfo
 import com.example.yuseong_allowancepayments_be.thirdparty.excel.dto.VNewcomerInfo
+import com.example.yuseong_allowancepayments_be.thirdparty.excel.exception.InvalidExcelFormatException
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellType.NUMERIC
 import org.apache.poi.ss.usermodel.CellType.STRING
@@ -25,17 +26,17 @@ class AllowanceExcelUtil {
 
     fun parseAllowanceExcel(file: MultipartFile, type: AllowanceType): ParseAllowanceInfo {
         val workbook = file.transferToExcel("2111")
-        val paymentTargets = getPaymentTarget(workbook.getSheetAt(0))
-        val cachePayments = getCashPayment(workbook.getSheetAt(1))
-        val newcomers = getNewcomer(workbook.getSheetAt(2), type)
-        val paymentStopped = getPaymentStopped(workbook.getSheetAt(3))
 
-        return ParseAllowanceInfo(
-            paymentTargets,
-            cachePayments,
-            newcomers,
-            paymentStopped
-        )
+        return try {
+            ParseAllowanceInfo(
+                paymentTargets = getPaymentTarget(workbook.getSheetAt(0)),
+                cashPayments = getCashPayment(workbook.getSheetAt(1)),
+                newcomers = getNewcomer(workbook.getSheetAt(2), type),
+                paymentStopped = getPaymentStopped(workbook.getSheetAt(3))
+            )
+        } catch (e: Exception) {
+            throw InvalidExcelFormatException
+        }
     }
 
     private fun getPaymentTarget(sheet: Sheet): List<PaymentTargetInfo> {

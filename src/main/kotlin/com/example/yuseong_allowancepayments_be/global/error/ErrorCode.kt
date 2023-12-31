@@ -19,4 +19,6 @@ enum class ErrorCode(
 
     PASSWORD_MISMATCH(401, "Invalid Password"),
 
+    INVALID_EXCEL_FORMAT(400, "Invalid Excel Format")
+
 }
