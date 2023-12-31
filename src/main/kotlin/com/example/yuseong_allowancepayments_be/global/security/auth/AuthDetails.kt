@@ -1,6 +1,6 @@
 package com.example.yuseong_allowancepayments_be.global.security.auth
 
-import com.example.yuseong_allowancepayments_be.domain.user.domain.User
+import com.example.yuseong_allowancepayments_be.domain.user.persistence.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 

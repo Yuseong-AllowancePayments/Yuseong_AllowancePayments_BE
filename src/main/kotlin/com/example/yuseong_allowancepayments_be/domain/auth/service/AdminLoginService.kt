@@ -3,7 +3,7 @@ package com.example.yuseong_allowancepayments_be.domain.auth.service
 import com.example.yuseong_allowancepayments_be.domain.allowance.dto.AdminLoginRequest
 import com.example.yuseong_allowancepayments_be.domain.auth.dto.TokenResponse
 import com.example.yuseong_allowancepayments_be.domain.auth.exception.PasswordMismatchException
-import com.example.yuseong_allowancepayments_be.domain.user.domain.repository.UserJpaRepository
+import com.example.yuseong_allowancepayments_be.domain.user.persistence.repository.UserJpaRepository
 import com.example.yuseong_allowancepayments_be.domain.user.exception.UserNotFoundException
 import com.example.yuseong_allowancepayments_be.global.security.jwt.JwtTokenProvider
 import org.springframework.security.crypto.password.PasswordEncoder

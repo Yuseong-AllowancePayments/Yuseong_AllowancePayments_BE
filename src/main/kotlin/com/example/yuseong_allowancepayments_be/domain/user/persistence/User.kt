@@ -1,4 +1,4 @@
-package com.example.yuseong_allowancepayments_be.domain.user.domain
+package com.example.yuseong_allowancepayments_be.domain.user.persistence
 
 import javax.persistence.Column
 import javax.persistence.Entity
